@@ -5,6 +5,7 @@ def escape_backslashes(input):
     return input.replace("\\\\", "\\")
 
 # The classes used in serialization
+# (Might not need these)
 class Sheet():
 
     def __init__(self, name, src, offX, offY, width, height):

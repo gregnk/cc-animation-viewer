@@ -101,8 +101,6 @@ else:
                                             + json.dumps(remove_sub(sub2))[1:-1] + ", " 
                                             + json.dumps(remove_sub(sub1))[1:])
                 print(anim_item_json)
-                
-                
 
                 print()
     

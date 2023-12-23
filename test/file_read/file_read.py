@@ -90,22 +90,33 @@ else:
     for sub1 in anim_json["SUB"]:
         for sub2 in sub1["SUB"]:
 
-            for sub3 in sub2["SUB"]:
+            # TODO: Make this part less crude
+            if ("SUB" in sub2):
+                for sub3 in sub2["SUB"]:
 
-                # Remove the SUB object from the higher orders once separated
-                def remove_sub(json):
-                    return_json = json
-                    for i in return_json:
-                        if (i == "SUB"):
-                            return_json.pop(i)
-                            break
+                    # Remove the SUB object from the higher orders once separated
+                    def remove_sub(json):
+                        return_json = json
+                        for i in return_json:
+                            if (i == "SUB"):
+                                return_json.pop(i)
+                                break
 
-                    return return_json
+                        return return_json
 
-                # Some jank to merge the SUBs together
-                anim_item_json = json.loads(json.dumps(sub3)[:-1] + ", " 
-                                            + json.dumps(remove_sub(sub2))[1:-1] + ", " 
-                                            + json.dumps(remove_sub(sub1))[1:])
+                    # Some jank to merge the SUBs together
+                    anim_item_json = json.loads(json.dumps(sub3)[:-1] + ", " 
+                                                + json.dumps(remove_sub(sub2))[1:-1] + ", " 
+                                                + json.dumps(remove_sub(sub1))[1:])
+                    print(anim_item_json)
+
+                    anim_list.append(anim_item_json)
+
+                    print()
+
+            else:
+                anim_item_json = json.loads(json.dumps(sub2)[:-1] + ", " 
+                                                + json.dumps(remove_sub(sub1))[1:])
                 print(anim_item_json)
 
                 anim_list.append(anim_item_json)

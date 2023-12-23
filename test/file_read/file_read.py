@@ -73,9 +73,14 @@ else:
     print("Sheets")
     print("=" * 50)
 
+    sheet_list = []
+    anim_list = []
+
     for sheet in anim_json["namedSheets"]:
         print(f"\"{sheet}\" {anim_json["namedSheets"][sheet]}")
         print()
+
+        sheet_list.append(sheet)
 
     print()
 
@@ -102,6 +107,8 @@ else:
                                             + json.dumps(remove_sub(sub2))[1:-1] + ", " 
                                             + json.dumps(remove_sub(sub1))[1:])
                 print(anim_item_json)
+
+                anim_list.append(anim_item_json)
 
                 print()
     

@@ -73,24 +73,20 @@ else:
     print("=" * 50)
 
     for sheet in anim_json["namedSheets"]:
-        #print(f"{sheet} - {anim_json["namedSheets"][sheet]}")
-        print(f"{sheet}")
+        print(f"\"{sheet}\" {anim_json["namedSheets"][sheet]}")
+        print()
 
     print()
 
     print("Animations")
     print("=" * 50)
 
-    # SUB 1 - Grouped by sheets
-    # SUB 2 - Grouped by fip/offsets
-    # SUB 3 - Grouped by name
     for sub1 in anim_json["SUB"]:
         for sub2 in sub1["SUB"]:
 
-            
             for sub3 in sub2["SUB"]:
-                print(sub3)
-                
+
+                # Remove the SUB object from the higher orders once seperated
                 def remove_sub(json):
                     return_json = json
                     for i in return_json:
@@ -100,8 +96,14 @@ else:
 
                     return return_json
 
-                print(remove_sub(sub2))
-                print(remove_sub(sub1))
+                # Some jank to merger the SUBs together
+                anim_item_json = json.loads(json.dumps(sub3)[:-1] + ", " 
+                                            + json.dumps(remove_sub(sub2))[1:-1] + ", " 
+                                            + json.dumps(remove_sub(sub1))[1:])
+                print(anim_item_json)
+                
+                
+
                 print()
     
         break

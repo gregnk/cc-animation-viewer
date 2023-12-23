@@ -96,7 +96,7 @@ else:
 
                     return return_json
 
-                # Some jank to merger the SUBs together
+                # Some jank to merge the SUBs together
                 anim_item_json = json.loads(json.dumps(sub3)[:-1] + ", " 
                                             + json.dumps(remove_sub(sub2))[1:-1] + ", " 
                                             + json.dumps(remove_sub(sub1))[1:])

@@ -86,7 +86,7 @@ else:
 
             for sub3 in sub2["SUB"]:
 
-                # Remove the SUB object from the higher orders once seperated
+                # Remove the SUB object from the higher orders once separated
                 def remove_sub(json):
                     return_json = json
                     for i in return_json:
@@ -105,4 +105,3 @@ else:
                 print()
     
         break
-        #for sub2 in sub1:

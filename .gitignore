@@ -1,0 +1,9 @@
+/distrib
+__pycache__/
+*internal/
+build/
+dist/
+*.log
+/test.cmd
+/*.spec
+*.egg-info/

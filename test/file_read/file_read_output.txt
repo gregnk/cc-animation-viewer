@@ -1,0 +1,60 @@
+CC_DIR = 'C:\Program Files (x86)\Steam\steamapps\common\CrossCode'
+ANIM_FILE_PATH = 'C:\Program Files (x86)\Steam\steamapps\common\CrossCode\assets\data\animations\player.json'
+
+dirs = 8
+Sheets
+==================================================
+"walk" {'src': 'media/entity/player/move.png', 'offX': 0, 'offY': 0, 'width': 32, 'height': 32}
+
+"walk2" {'src': 'media/entity/player/move.png', 'xCount': 6, 'offX': 192, 'offY': 320, 'width': 32, 'height': 32}
+
+"walk3" {'src': 'media/entity/player/move.png', 'xCount': 16, 'offX': 0, 'offY': 480, 'width': 32, 'height': 32}
+
+"poses" {'src': 'media/entity/player/move.png', 'offX': 0, 'offY': 576, 'width': 32, 'height': 32}
+
+"itemPoses" {'src': 'media/entity/player/move.png', 'xCount': 4, 'offX': 384, 'offY': 320, 'width': 32, 'height': 32}
+
+"idlePoses" {'src': 'media/entity/player/move.png', 'offX': 384, 'offY': 448, 'width': 32, 'height': 32}
+
+"throw" {'src': 'media/entity/player/throw.png', 'offX': 0, 'offY': 0, 'width': 32, 'height': 32}
+
+"special" {'src': 'media/entity/player/throw.png', 'offX': 0, 'offY': 416, 'width': 32, 'height': 32}
+
+
+Animations
+==================================================
+{'name': 'idle', 'time': 1, 'repeat': False, 'frames': [1], 'tileOffsets': [0, 16, 32, 48, 64, 48, 32, 16], 'sheet': 'walk', 'flipX': [0, 0, 0, 0, 0, 1, 1, 1]}
+
+{'name': 'walk', 'time': 0.1333, 'repeat': True, 'frames': [0, 1, 2, 1], 'tileOffsets': [0, 16, 32, 48, 64, 48, 32, 16], 'sheet': 'walk', 'flipX': [0, 0, 0, 0, 0, 1, 1, 1]}
+
+{'name': 'run', 'time': 0.0666, 'repeat': True, 'frames': [3, 4, 5, 6, 7, 8], 'tileOffsets': [0, 16, 32, 48, 64, 48, 32, 16], 'sheet': 'walk', 'flipX': [0, 0, 0, 0, 0, 1, 1, 1]}
+
+{'name': 'runStatic', 'time': 0.0666, 'repeat': True, 'frames': [7], 'tileOffsets': [0, 16, 32, 48, 64, 48, 32, 16], 'sheet': 'walk', 'flipX': [0, 0, 0, 0, 0, 1, 1, 1]}
+
+{'name': 'brake', 'time': 0.07, 'repeat': False, 'frames': [9, 10], 'tileOffsets': [0, 16, 32, 48, 64, 48, 32, 16], 'sheet': 'walk', 'flipX': [0, 0, 0, 0, 0, 1, 1, 1]}
+
+{'name': 'preIdle', 'time': 0.07, 'repeat': False, 'frames': [11], 'tileOffsets': [0, 16, 32, 48, 64, 48, 32, 16], 'sheet': 'walk', 'flipX': [0, 0, 0, 0, 0, 1, 1, 1]}
+
+{'name': 'startAim', 'time': 0.07, 'repeat': False, 'frames': [12, 13], 'tileOffsets': [0, 16, 32, 48, 64, 48, 32, 16], 'sheet': 'walk', 'flipX': [0, 0, 0, 0, 0, 1, 1, 1]}
+
+{'name': 'damage', 'time': 0.07, 'repeat': True, 'frames': [14, 15], 'tileOffsets': [0, 16, 32, 48, 64, 48, 32, 16], 'sheet': 'walk', 'flipX': [0, 0, 0, 0, 0, 1, 1, 1]}
+
+{'name': 'aim', 'time': 0.1, 'repeat': True, 'frames': [0, 1, 2], 'tileOffsets': [80, 96, 112, 128, 144, 128, 112, 96], 'sheet': 'walk', 'flipX': [0, 0, 0, 0, 0, 1, 1, 1]}
+
+{'name': 'aimMove', 'time': 0.1, 'repeat': True, 'frames': [3, 4, 5, 6], 'tileOffsets': [80, 96, 112, 128, 144, 128, 112, 96], 'sheet': 'walk', 'flipX': [0, 0, 0, 0, 0, 1, 1, 1]}
+
+{'name': 'aimMoveRev', 'time': 0.1, 'repeat': True, 'frames': [6, 5, 4, 3], 'tileOffsets': [80, 96, 112, 128, 144, 128, 112, 96], 'sheet': 'walk', 'flipX': [0, 0, 0, 0, 0, 1, 1, 1]}
+
+{'name': 'jump', 'time': 0.1, 'repeat': True, 'frames': [7], 'tileOffsets': [80, 96, 112, 128, 144, 128, 112, 96], 'sheet': 'walk', 'flipX': [0, 0, 0, 0, 0, 1, 1, 1]}
+
+{'name': 'fall', 'time': 0.1, 'repeat': True, 'frames': [8], 'tileOffsets': [80, 96, 112, 128, 144, 128, 112, 96], 'sheet': 'walk', 'flipX': [0, 0, 0, 0, 0, 1, 1, 1]}
+
+{'name': 'guard', 'time': 0.1, 'repeat': True, 'frames': [9, 10, 11], 'tileOffsets': [80, 96, 112, 128, 144, 128, 112, 96], 'sheet': 'walk', 'flipX': [0, 0, 0, 0, 0, 1, 1, 1]}
+
+{'name': 'hover', 'time': 0.2, 'repeat': True, 'frames': [13, 14, 15, 14], 'tileOffsets': [80, 96, 112, 128, 144, 128, 112, 96], 'sheet': 'walk', 'flipX': [0, 0, 0, 0, 0, 1, 1, 1]}
+
+{'name': 'combatIdle', 'time': 0.1, 'repeat': True, 'frames': [7, 8, 9, 10], 'tileOffsets': [80, 96, 112, 128, 144, 128, 112, 96], 'sheet': 'walk', 'flipX': [0, 0, 0, 0, 0, 1, 1, 1]}
+
+{'name': 'startCharge', 'time': 0.05, 'repeat': False, 'frames': [0, 1], 'tileOffsets': [160, 176, 192, 208, 224, 208, 192, 176], 'sheet': 'walk', 'flipX': [0, 0, 0, 0, 0, 1, 1, 1]}
+
+{'name': 'charge', 'time': 0.05, 'repeat': True, 'frames': [2, 3, 4, 5], 'tileOffsets': [160, 176, 192, 208, 224, 208, 192, 176], 'sheet': 'walk', 'flipX': [0, 0, 0, 0, 0, 1, 1, 1]}

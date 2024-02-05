@@ -53,7 +53,7 @@ def load_anim_json():
 
     print(anim_name_list)
     anim_cmb.configure(values=anim_name_list)
-    #anim_cmb.set(value=anim_name_list[0]) # This isn't really correct, fix later
+    anim_cmb.set(anim_name_list[0])
 
 def anim_tick():
     dummy = 0
@@ -87,7 +87,7 @@ TOOLBAR_BTN_WIDTH = 100
 TOOLBAR_BTN_HEIGHT = 100
 load_btn = ctk.CTkButton(window, text="Load")
 refresh_btn = ctk.CTkButton(window, text="Refresh")
-anim_cmb = ctk.CTkComboBox(window, values="")
+anim_cmb = ctk.CTkComboBox(window, values="", state="readonly")
 
 # Control buttons
 PLAYPAUSE_BTN_RELX = 0.5

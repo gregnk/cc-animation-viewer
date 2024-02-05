@@ -73,6 +73,8 @@ def get_display_image(anim_index):
     # Temporarily set to the first one
     load_anim_json()
 
+    print(f"anim_index = {anim_index}")
+
     # Get the path of the sheet file
     current_sheet = CurrentAnimFile.sheets[CurrentAnimFile.animations[anim_index]["sheet"]]
     current_sheet_index = list(CurrentAnimFile.sheets.keys()).index(CurrentAnimFile.animations[anim_index]["sheet"])
@@ -83,18 +85,46 @@ def get_display_image(anim_index):
     print(current_anim_sheet_path)
 
     # Crop the image and set the rendering params
-    light_image = Image.open(os.path.join(current_anim_sheet_path)).crop([0, 0, 32, 32]).resize([DISPLAY_FRAME_SIZE, DISPLAY_FRAME_SIZE], Image.Resampling.NEAREST)
+
+    # The width and height defined by the sheet
+    anim_width = current_sheet["width"]
+    anim_height = current_sheet["height"]
+
+    # The frame on the sheet that will be displayed
+    frame = CurrentAnimFile.animations[anim_index]["frames"][0]
+
+    # Crop coords UNFINISHED)
+    # (Probably doesn't work for all of them)
+    left = anim_width * frame
+    top = anim_height * frame
+    right = anim_width * (frame + 1)
+    bottom = anim_height * (frame + 1)
+
+    light_image = Image.open(os.path.join(current_anim_sheet_path)) \
+        .crop([left, top, right, bottom]) \
+        .resize([DISPLAY_FRAME_SIZE, DISPLAY_FRAME_SIZE], Image.Resampling.NEAREST)
 
     return ctk.CTkImage(light_image=light_image, size=(DISPLAY_FRAME_SIZE, DISPLAY_FRAME_SIZE))
 
+def get_anim_index_by_name(name):
+    # Shit code, fix later
+    index = 0
+    for anim in CurrentAnimFile.animations:
+        if (anim["name"] == name):
+            return index
+        
+        index += 1
+
+    return -1
+
 def anim_cmb_handle(choice):
-    print(anim_cmb)
-    CurrentAnim.index = anim_cmb.get().index(choice) # This doesn't work
+    print(choice)
+    CurrentAnim.index = get_anim_index_by_name(choice) # Find a better way of doing this
     update_anim()
 
 def update_anim():
     # Update the display image
-    display_image = get_display_image(0)
+    display_image = get_display_image(CurrentAnim.index)
     display_frame.configure(image=display_image)
 
 # Timer

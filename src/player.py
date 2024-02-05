@@ -53,7 +53,7 @@ def load_anim_json():
 
     print(anim_name_list)
     anim_cmb.configure(values=anim_name_list)
-    anim_cmb.set(value=anim_name_list[0])
+    anim_cmb.set(value=anim_name_list[0]) # This isn't really correct, fix later
 
 def anim_tick():
     dummy = 0

@@ -19,10 +19,6 @@ from util import escape_backslashes
 import json
 import settings
 
-# Temporary code
-#CC_DIR = r"C:\Program Files (x86)\Steam\steamapps\common\CrossCode"
-#ANIM_FILE_PATH = CC_DIR + r"\assets\data\animations\player.json"
-
 def load_anim_file(anim_file_path):
     print(escape_backslashes(f"{settings.CC_DIR = }"))
     print(escape_backslashes(f"{anim_file_path = }"))
@@ -56,8 +52,6 @@ def load_anim_file(anim_file_path):
             print(sheet)
             sheet_json = f"\"{sheet}\":{json.dumps(anim_json["namedSheets"][sheet])}"
             print(sheet_json)
-
-            # sheet_list.append(json.loads(sheet_json)
 
         print()
 

@@ -69,15 +69,19 @@ def playpause():
 
 DISPLAY_FRAME_SIZE = 400
 
-def display_anim():
+def get_display_image(anim_index):
     # Get the sheet name, and then get the path from the sheet json array
     # Temporarily set to the first one
     load_anim_json()
 
     # Get the path of the sheet file
-    current_anim_sheet_src = CurrentAnimFile.sheets[CurrentAnimFile.animations[0]["sheet"]]["src"] # The relative path in the JSON
+    current_anim_sheet_src = CurrentAnimFile.sheets[CurrentAnimFile.animations[anim_index]["sheet"]]["src"] # The relative path in the JSON
     current_anim_sheet_path = settings.CC_DIR + "/assets/" + current_anim_sheet_src
     return Image.open(os.path.join(current_anim_sheet_path)).crop([0, 0, 32, 32]).resize([DISPLAY_FRAME_SIZE, DISPLAY_FRAME_SIZE], Image.Resampling.NEAREST)
+
+def update_anim():
+    display_image = get_display_image(CurrentAnim.index)
+    display_frame.configure(image=display_image)
 
 # Timer
 timer = window.after(1000, anim_tick)
@@ -100,7 +104,7 @@ backframe_btn = ctk.CTkButton(window, text="<", width=FRAMECTRL_BTN_WIDTH)
 forwardframe_btn = ctk.CTkButton(window, text=">", width=FRAMECTRL_BTN_WIDTH)
 
 # Display frame
-display_image = ctk.CTkImage(light_image=display_anim(), size=(DISPLAY_FRAME_SIZE, DISPLAY_FRAME_SIZE))
+display_image = ctk.CTkImage(light_image=get_display_image(0), size=(DISPLAY_FRAME_SIZE, DISPLAY_FRAME_SIZE))
 display_frame = ctk.CTkLabel(window, text='', width=DISPLAY_FRAME_SIZE, height=DISPLAY_FRAME_SIZE, image=display_image)
 
 def load_ui():

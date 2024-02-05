@@ -49,6 +49,8 @@ def load_anim_file(anim_file_path):
 
         anim_list = []
 
+        # This code doesn't actually do much
+        # It just prints the sheet JSON for diagnostic purposes
         for sheet in anim_json["namedSheets"]:
             print(sheet)
             sheet_json = f"\"{sheet}\":{json.dumps(anim_json["namedSheets"][sheet])}"

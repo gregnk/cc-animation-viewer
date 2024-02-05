@@ -18,6 +18,7 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 from util import escape_backslashes
 import json
 import settings
+
 # Temporary code
 #CC_DIR = r"C:\Program Files (x86)\Steam\steamapps\common\CrossCode"
 #ANIM_FILE_PATH = CC_DIR + r"\assets\data\animations\player.json"

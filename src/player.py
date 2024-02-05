@@ -46,6 +46,15 @@ def load_anim_json():
     CurrentAnimFile.sheets = anim_file[0]
     CurrentAnimFile.animations = anim_file[1]
 
+    # Update the selection combobox
+    anim_name_list = []
+    for anim in CurrentAnimFile.animations:
+        anim_name_list.append(anim["name"])
+
+    print(anim_name_list)
+    anim_cmb.configure(values=anim_name_list)
+    anim_cmb.set(value=anim_name_list[0])
+
 def anim_tick():
     dummy = 0
 
@@ -78,6 +87,7 @@ TOOLBAR_BTN_WIDTH = 100
 TOOLBAR_BTN_HEIGHT = 100
 load_btn = ctk.CTkButton(window, text="Load")
 refresh_btn = ctk.CTkButton(window, text="Refresh")
+anim_cmb = ctk.CTkComboBox(window, values="")
 
 # Control buttons
 PLAYPAUSE_BTN_RELX = 0.5
@@ -105,6 +115,7 @@ def load_ui():
 
     load_btn.place(relx=0.1, rely=0.05, anchor=ctk.N)
     refresh_btn.place(relx=0.25, rely=0.05, anchor=ctk.N)
+    anim_cmb.place(relx=0.40, rely=0.05, anchor=ctk.N)
 
     display_frame.place(relx=0.5, rely=0.5, anchor=ctk.CENTER)
 

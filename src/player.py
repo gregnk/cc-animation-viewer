@@ -53,7 +53,6 @@ def load_anim_json():
 
     print(anim_name_list)
     anim_cmb.configure(values=anim_name_list)
-    anim_cmb.set(anim_name_list[0])
 
 def anim_tick():
     dummy = 0
@@ -75,12 +74,27 @@ def get_display_image(anim_index):
     load_anim_json()
 
     # Get the path of the sheet file
-    current_anim_sheet_src = CurrentAnimFile.sheets[CurrentAnimFile.animations[anim_index]["sheet"]]["src"] # The relative path in the JSON
+    current_sheet = CurrentAnimFile.sheets[CurrentAnimFile.animations[anim_index]["sheet"]]
+    current_sheet_index = list(CurrentAnimFile.sheets.keys()).index(CurrentAnimFile.animations[anim_index]["sheet"])
+    current_anim_sheet_src = current_sheet["src"] # The relative path in the JSON
     current_anim_sheet_path = settings.CC_DIR + "/assets/" + current_anim_sheet_src
-    return Image.open(os.path.join(current_anim_sheet_path)).crop([0, 0, 32, 32]).resize([DISPLAY_FRAME_SIZE, DISPLAY_FRAME_SIZE], Image.Resampling.NEAREST)
+
+    print(list(CurrentAnimFile.sheets.keys())[current_sheet_index])
+    print(current_anim_sheet_path)
+
+    # Crop the image and set the rendering params
+    light_image = Image.open(os.path.join(current_anim_sheet_path)).crop([0, 0, 32, 32]).resize([DISPLAY_FRAME_SIZE, DISPLAY_FRAME_SIZE], Image.Resampling.NEAREST)
+
+    return ctk.CTkImage(light_image=light_image, size=(DISPLAY_FRAME_SIZE, DISPLAY_FRAME_SIZE))
+
+def anim_cmb_handle(choice):
+    print(anim_cmb)
+    CurrentAnim.index = anim_cmb.get().index(choice) # This doesn't work
+    update_anim()
 
 def update_anim():
-    display_image = get_display_image(CurrentAnim.index)
+    # Update the display image
+    display_image = get_display_image(0)
     display_frame.configure(image=display_image)
 
 # Timer
@@ -91,7 +105,7 @@ TOOLBAR_BTN_WIDTH = 100
 TOOLBAR_BTN_HEIGHT = 100
 load_btn = ctk.CTkButton(window, text="Load")
 refresh_btn = ctk.CTkButton(window, text="Refresh")
-anim_cmb = ctk.CTkComboBox(window, values="", state="readonly")
+anim_cmb = ctk.CTkComboBox(window, values="", state="readonly", command=anim_cmb_handle)
 
 # Control buttons
 PLAYPAUSE_BTN_RELX = 0.5
@@ -104,11 +118,12 @@ backframe_btn = ctk.CTkButton(window, text="<", width=FRAMECTRL_BTN_WIDTH)
 forwardframe_btn = ctk.CTkButton(window, text=">", width=FRAMECTRL_BTN_WIDTH)
 
 # Display frame
-display_image = ctk.CTkImage(light_image=get_display_image(0), size=(DISPLAY_FRAME_SIZE, DISPLAY_FRAME_SIZE))
+display_image = get_display_image(0)
 display_frame = ctk.CTkLabel(window, text='', width=DISPLAY_FRAME_SIZE, height=DISPLAY_FRAME_SIZE, image=display_image)
 
 def load_ui():
-
+    load_anim_json()
+    
     window.geometry('1000x700')
     window.title("cc-animation-viewer")
 
@@ -123,5 +138,6 @@ def load_ui():
 
     display_frame.place(relx=0.5, rely=0.5, anchor=ctk.CENTER)
 
-    window.mainloop()
+    anim_cmb.set(CurrentAnimFile.animations[CurrentAnim.index]["name"])
 
+    window.mainloop()

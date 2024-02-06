@@ -93,7 +93,7 @@ def get_display_image(anim_index):
     # The frame on the sheet that will be displayed
     frame = CurrentAnimFile.animations[anim_index]["frames"][0]
 
-    # Crop coords UNFINISHED)
+    # Crop coords (UNFINISHED)
     # (Probably doesn't work for all of them)
     left = anim_width * frame
     top = anim_height * frame

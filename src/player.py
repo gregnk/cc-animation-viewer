@@ -59,18 +59,18 @@ def anim_tick():
 
 def play_pause():
     if (PlaybackControl.playing):
-        play()
-
-    else:
         pause()
 
-def play():
-    playpause_btn.configure(text="Play")
-    PlaybackControl.playing = False
+    else:
+        play()
 
-def pause():
+def play():
     playpause_btn.configure(text="Pause")
     PlaybackControl.playing = True
+
+def pause():
+    playpause_btn.configure(text="Play")
+    PlaybackControl.playing = False
 
 def back_frame():
     if (PlaybackControl.playing == False):
@@ -139,6 +139,7 @@ def get_anim_index_by_name(name):
     return -1
 
 def anim_combobox_handle(choice):
+    pause()
     print(choice)
     CurrentAnim.index = get_anim_index_by_name(choice) # Find a better way of doing this
     

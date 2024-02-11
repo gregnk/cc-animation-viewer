@@ -117,7 +117,7 @@ def get_anim_index_by_name(name):
 
     return -1
 
-def anim_cmb_handle(choice):
+def anim_combobox_handle(choice):
     print(choice)
     CurrentAnim.index = get_anim_index_by_name(choice) # Find a better way of doing this
     update_anim()
@@ -135,7 +135,7 @@ TOOLBAR_BTN_WIDTH = 100
 TOOLBAR_BTN_HEIGHT = 100
 load_btn = ctk.CTkButton(window, text="Load")
 refresh_btn = ctk.CTkButton(window, text="Refresh")
-anim_cmb = ctk.CTkComboBox(window, values="", state="readonly", command=anim_cmb_handle)
+anim_cmb = ctk.CTkComboBox(window, values="", state="readonly", command=anim_combobox_handle)
 
 # Control buttons
 PLAYPAUSE_BTN_RELX = 0.5

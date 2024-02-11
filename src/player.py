@@ -130,9 +130,9 @@ def get_display_image(anim_index):
     # Crop coords (UNFINISHED)
     # TODO: Add tile offsets
     left = anim_width * anim_frame
-    top = 0
+    top = 0 + (anim_height * PlaybackControl.direction)
     right = anim_width * (anim_frame + 1)
-    bottom = anim_height
+    bottom = anim_height + (anim_height * PlaybackControl.direction)
 
     light_image = Image.open(os.path.join(current_anim_sheet_path)) \
         .crop([left, top, right, bottom]) \
@@ -159,7 +159,14 @@ def anim_cmb_handle(choice):
     CurrentAnim.data = CurrentAnimFile.animations[CurrentAnim.index]
     
     PlaybackControl.frame = 0
+    PlaybackControl.direction = 0
 
+    direction_input.delete(0, 100)
+    direction_input.insert(0, "0")
+    update_anim()
+
+def direction_input_handle(input):
+    PlaybackControl.direction = int(direction_input.get())
     update_anim()
 
 def update_anim():
@@ -187,6 +194,10 @@ FRAMECTRL_BTN_WIDTH = 30
 backframe_btn = ctk.CTkButton(window, text="<", width=FRAMECTRL_BTN_WIDTH, command=back_frame)
 forwardframe_btn = ctk.CTkButton(window, text=">", width=FRAMECTRL_BTN_WIDTH, command=forward_frame)
 
+FRAMECTRL_FIELD_WIDTH = 35
+direction_lbl = ctk.CTkLabel(window, text="Direction", width=FRAMECTRL_BTN_WIDTH)
+direction_input = ctk.CTkEntry(window, width=FRAMECTRL_BTN_WIDTH)
+
 # Display frame
 load_anim_json()
 display_image = get_display_image(0)
@@ -197,10 +208,14 @@ def load_ui():
     window.geometry('1000x700')
     window.title("cc-animation-viewer")
 
-
     playpause_btn.place(relx=PLAYPAUSE_BTN_RELX, rely=PLAYPAUSE_BTN_RELY, anchor=ctk.S)
     backframe_btn.place(relx=PLAYPAUSE_BTN_RELX - 0.1, rely=PLAYPAUSE_BTN_RELY, anchor=ctk.S)
     forwardframe_btn.place(relx=PLAYPAUSE_BTN_RELX + 0.1, rely=PLAYPAUSE_BTN_RELY, anchor=ctk.S)
+
+    direction_lbl.place(relx=PLAYPAUSE_BTN_RELX - 0.35, rely=PLAYPAUSE_BTN_RELY, anchor=ctk.S)
+    direction_input.insert(0, "0")
+    direction_input.bind("<Return>", direction_input_handle) # TODO: Have this update on input as opposed to requiring enter
+    direction_input.place(relx=PLAYPAUSE_BTN_RELX - 0.3, rely=PLAYPAUSE_BTN_RELY, anchor=ctk.S)
 
     load_btn.place(relx=0.1, rely=0.05, anchor=ctk.N)
     refresh_btn.place(relx=0.25, rely=0.05, anchor=ctk.N)

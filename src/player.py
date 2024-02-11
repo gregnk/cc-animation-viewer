@@ -66,6 +66,18 @@ def play_pause():
         playpause_btn.configure(text="Pause")
         PlaybackControl.playing = True
 
+def back_frame():
+    if (PlaybackControl.playing == False):
+        if (PlaybackControl.frame > 0):
+            PlaybackControl.frame -= 1
+            update_anim()
+
+def forward_frame():
+    if (PlaybackControl.playing == False):
+        if (PlaybackControl.frame < len(CurrentAnimFile.animations[CurrentAnim.index]["frames"]) - 1):
+            PlaybackControl.frame += 1
+            update_anim()
+
 DISPLAY_FRAME_SIZE = 400
 
 def get_display_image(anim_index):
@@ -91,14 +103,17 @@ def get_display_image(anim_index):
     anim_height = current_sheet["height"]
 
     # The frame on the sheet that will be displayed
-    frame = CurrentAnimFile.animations[anim_index]["frames"][0]
+    anim_frame = CurrentAnimFile.animations[anim_index]["frames"][PlaybackControl.frame]
+    print(f"PlaybackControl.frame = {PlaybackControl.frame}")
+    print(f"anim_frame = {anim_frame}")
+    print(f"CurrentAnim.animations[anim_index][\"frames\"] = {CurrentAnimFile.animations[anim_index]["frames"]}")
 
     # Crop coords (UNFINISHED)
-    # (Probably doesn't work for all of them)
-    left = anim_width * frame
-    top = anim_height * frame
-    right = anim_width * (frame + 1)
-    bottom = anim_height * (frame + 1)
+    # TODO: Add tile offsets
+    left = anim_width * anim_frame
+    top = 0
+    right = anim_width * (anim_frame + 1)
+    bottom = anim_height
 
     light_image = Image.open(os.path.join(current_anim_sheet_path)) \
         .crop([left, top, right, bottom]) \
@@ -120,6 +135,9 @@ def get_anim_index_by_name(name):
 def anim_combobox_handle(choice):
     print(choice)
     CurrentAnim.index = get_anim_index_by_name(choice) # Find a better way of doing this
+    
+    PlaybackControl.frame = 0
+
     update_anim()
 
 def update_anim():
@@ -144,8 +162,8 @@ playpause_btn = ctk.CTkButton(window, text="Play", command=play_pause)
 
 FRAMECTRL_BTN_WIDTH = 30
 #FRAMECTRL_BTN_HEIGHT = 30
-backframe_btn = ctk.CTkButton(window, text="<", width=FRAMECTRL_BTN_WIDTH)
-forwardframe_btn = ctk.CTkButton(window, text=">", width=FRAMECTRL_BTN_WIDTH)
+backframe_btn = ctk.CTkButton(window, text="<", width=FRAMECTRL_BTN_WIDTH, command=back_frame)
+forwardframe_btn = ctk.CTkButton(window, text=">", width=FRAMECTRL_BTN_WIDTH, command=forward_frame)
 
 # Display frame
 load_anim_json()

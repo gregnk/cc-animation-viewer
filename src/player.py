@@ -71,7 +71,7 @@ DISPLAY_FRAME_SIZE = 400
 def get_display_image(anim_index):
     # Get the sheet name, and then get the path from the sheet json array
     # Temporarily set to the first one
-    load_anim_json()
+    #load_anim_json()
 
     print(f"anim_index = {anim_index}")
 
@@ -148,11 +148,11 @@ backframe_btn = ctk.CTkButton(window, text="<", width=FRAMECTRL_BTN_WIDTH)
 forwardframe_btn = ctk.CTkButton(window, text=">", width=FRAMECTRL_BTN_WIDTH)
 
 # Display frame
+load_anim_json()
 display_image = get_display_image(0)
 display_frame = ctk.CTkLabel(window, text='', width=DISPLAY_FRAME_SIZE, height=DISPLAY_FRAME_SIZE, image=display_image)
 
 def load_ui():
-    load_anim_json()
     
     window.geometry('1000x700')
     window.title("cc-animation-viewer")

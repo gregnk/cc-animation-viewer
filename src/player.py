@@ -26,7 +26,9 @@ window = ctk.CTk()
 # Vars for the player state
 class PlaybackControl:
     playing = False
+    loop = True
     frame = 0
+    direction = 0
 
 # The currently loaded anim file
 class CurrentAnimFile:

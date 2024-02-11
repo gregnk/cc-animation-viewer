@@ -59,12 +59,18 @@ def anim_tick():
 
 def play_pause():
     if (PlaybackControl.playing):
-        playpause_btn.configure(text="Play")
-        PlaybackControl.playing = False
+        play()
 
     else:
-        playpause_btn.configure(text="Pause")
-        PlaybackControl.playing = True
+        pause()
+
+def play():
+    playpause_btn.configure(text="Play")
+    PlaybackControl.playing = False
+
+def pause():
+    playpause_btn.configure(text="Pause")
+    PlaybackControl.playing = True
 
 def back_frame():
     if (PlaybackControl.playing == False):

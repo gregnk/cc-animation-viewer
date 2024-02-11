@@ -148,6 +148,7 @@ def get_anim_index_by_name(name):
 
     return -1
 
+# What happens when the animation is changed
 def anim_combobox_handle(choice):
     pause()
     print(choice)

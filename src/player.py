@@ -57,7 +57,7 @@ def load_anim_json():
 def anim_tick():
     dummy = 0
 
-def playpause():
+def play_pause():
     if (PlaybackControl.playing):
         playpause_btn.configure(text="Play")
         PlaybackControl.playing = False
@@ -140,7 +140,7 @@ anim_cmb = ctk.CTkComboBox(window, values="", state="readonly", command=anim_cmb
 # Control buttons
 PLAYPAUSE_BTN_RELX = 0.5
 PLAYPAUSE_BTN_RELY = 0.9
-playpause_btn = ctk.CTkButton(window, text="Play", command=playpause)
+playpause_btn = ctk.CTkButton(window, text="Play", command=play_pause)
 
 FRAMECTRL_BTN_WIDTH = 30
 #FRAMECTRL_BTN_HEIGHT = 30

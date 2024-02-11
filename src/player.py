@@ -55,7 +55,17 @@ def load_anim_json():
     anim_cmb.configure(values=anim_name_list)
 
 def anim_tick():
-    dummy = 0
+    if (PlaybackControl.playing == True):
+        if (PlaybackControl.frame < len(CurrentAnimFile.animations[CurrentAnim.index]["frames"]) - 1):
+            PlaybackControl.frame += 1
+
+        else:
+            PlaybackControl.frame = 0
+        
+        update_anim()
+
+    # Not sure if this will cause a stackoverflow
+    window.after(100, anim_tick) 
 
 def play_pause():
     if (PlaybackControl.playing):
@@ -153,7 +163,7 @@ def update_anim():
     display_frame.configure(image=display_image)
 
 # Timer
-timer = window.after(1000, anim_tick)
+window.after(100, anim_tick)
 
 # Toolbar buttons
 TOOLBAR_BTN_WIDTH = 100

@@ -38,6 +38,7 @@ class CurrentAnimFile:
 # The animation which is currently playing
 class CurrentAnim:
     index = 0
+    data = ""
 
 def load_anim_json():
     # Jank Code
@@ -153,6 +154,7 @@ def anim_combobox_handle(choice):
     pause()
     print(choice)
     CurrentAnim.index = get_anim_index_by_name(choice) # Find a better way of doing this
+    CurrentAnim.data = CurrentAnimFile.animations[CurrentAnim.index]
     
     PlaybackControl.frame = 0
 

@@ -18,6 +18,7 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 from util import escape_backslashes
 import json
 import settings
+import copy
 
 def load_anim_file(anim_file_path):
     print(escape_backslashes(f"{settings.CC_DIR = }"))
@@ -58,42 +59,60 @@ def load_anim_file(anim_file_path):
         print("Animations")
         print("=" * 50)
 
+
         for sub1 in anim_json["SUB"]:
             for sub2 in sub1["SUB"]:
 
                 # TODO: Make this part less crude
+                # TODO: Some anims are not loaded in properly
                 if ("SUB" in sub2):
                     for sub3 in sub2["SUB"]:
 
                         # Remove the SUB object from the higher orders once separated
-                        def remove_sub(json):
-                            return_json = json
+                        def filter_json(json):
+                            return_json = copy.deepcopy(json)
+                            return_json = remove_key("DOCTYPE", return_json)
+                            return_json = remove_key("SUB", return_json)
+                            return_json = remove_key("namedSheets", return_json)
+
+                            return return_json
+
+                        def remove_key(name, json):
+                            return_json = copy.deepcopy(json)
                             for i in return_json:
-                                if (i == "SUB"):
+                                #print(i)
+                                if (i == name):
                                     return_json.pop(i)
                                     break
 
                             return return_json
 
                         # Some jank to merge the SUBs together
-                        anim_item_json = json.loads(json.dumps(sub3)[:-1] + ", " 
-                                                    + json.dumps(remove_sub(sub2))[1:-1] + ", " 
-                                                    + json.dumps(remove_sub(sub1))[1:])
-                        print(anim_item_json)
+                        #print(json.dumps(filter_json(anim_json))[1:])
+                        print(json.dumps(filter_json(sub3))[:-1])
+                        anim_item_json = json.dumps(filter_json(sub3))[:-1] + ", " \
+                                        + json.dumps(filter_json(sub2))[1:-1] + ", " \
+                                        + json.dumps(filter_json(sub1))[1:-1] + ", " \
+                                        + json.dumps(filter_json(anim_json))[1:]
 
-                        anim_list.append(anim_item_json)
+                        print("SUB 3 anim_item_json = " + anim_item_json)
+                        
+                        anim_list.append(json.loads(anim_item_json))
 
                         print()
 
                 else:
-                    anim_item_json = json.loads(json.dumps(sub2)[:-1] + ", " 
-                                                    + json.dumps(remove_sub(sub1))[1:])
-                    print(anim_item_json)
+                    # This code doesn't work
+                    # "throw" has a stray comma for some reason
+                    # Fix this
+                    anim_item_json = json.dumps(sub2)[:-1] + ", " \
+                                    + json.dumps(filter_json(sub1))[1:-1] + ", " \
+                                    + json.dumps(filter_json(anim_json))[1:] 
+                    print("SUB 2 anim_item_json = " + anim_item_json)
 
-                    anim_list.append(anim_item_json)
+                    anim_list.append(json.loads(anim_item_json))
 
                     print()
         
-            return [anim_json["namedSheets"], anim_list]
-                
-            break
+
+        return [anim_json["namedSheets"], anim_list]

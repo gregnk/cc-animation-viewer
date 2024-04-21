@@ -166,8 +166,10 @@ def anim_cmb_handle(choice):
     update_anim()
 
 def direction_input_handle(input):
-    PlaybackControl.direction = int(direction_input.get())
-    update_anim()
+    dir_input = int(direction_input.get())
+    if (dir_input < CurrentAnimFile.animations[CurrentAnim.index]["dirs"]):
+        PlaybackControl.direction = dir_input
+        update_anim()
 
 def update_anim():
     # Update the display image

@@ -20,6 +20,9 @@ import json
 import settings
 import copy
 
+def remove_stray_commas(input_str):
+    return input_str
+
 def load_anim_file(anim_file_path):
     print(escape_backslashes(f"{settings.CC_DIR = }"))
     print(escape_backslashes(f"{anim_file_path = }"))
@@ -109,6 +112,7 @@ def load_anim_file(anim_file_path):
                                     + json.dumps(filter_json(sub1))[1:-1] + ", " \
                                     + json.dumps(filter_json(anim_json))[1:] 
                     print("SUB 2 anim_item_json = " + anim_item_json)
+
 
                     anim_list.append(json.loads(anim_item_json))
 

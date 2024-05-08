@@ -114,6 +114,8 @@ def get_display_image(anim_index):
 
     print(list(CurrentAnimFile.sheets.keys())[current_sheet_index])
     print(current_anim_sheet_path)
+    print(f"current_sheet[\"offX\"] = {str(current_sheet["offX"])}")
+    print(f"current_sheet[\"offY\"] = {str(current_sheet["offY"])}")
 
     # Crop the image and set the rendering params
 

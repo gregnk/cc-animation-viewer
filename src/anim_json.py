@@ -55,7 +55,7 @@ def load_anim_file(anim_file_path):
         for sheet in anim_json["namedSheets"]:
             print(sheet)
             sheet_json = f"\"{sheet}\":{json.dumps(anim_json["namedSheets"][sheet])}"
-            print(sheet_json)
+            print("sheet_json = " + sheet_json)
 
         print()
 
@@ -92,7 +92,10 @@ def load_anim_file(anim_file_path):
 
                         # Some jank to merge the SUBs together
                         #print(json.dumps(filter_json(anim_json))[1:])
-                        print(json.dumps(filter_json(sub3))[:-1])
+
+                        # BUG: If one the SUBs is empty then it breaks the entire thing
+                        print(json.dumps("sub3 = " + filter_json(sub3))[:-1])
+                        print(json.dumps("sub2 = " + filter_json(sub2))[1:-1])
                         anim_item_json = json.dumps(filter_json(sub3))[:-1] + ", " \
                                         + json.dumps(filter_json(sub2))[1:-1] + ", " \
                                         + json.dumps(filter_json(sub1))[1:-1] + ", " \
@@ -105,9 +108,6 @@ def load_anim_file(anim_file_path):
                         print()
 
                 else:
-                    # This code doesn't work
-                    # "throw" has a stray comma for some reason
-                    # Fix this
                     anim_item_json = json.dumps(sub2)[:-1] + ", " \
                                     + json.dumps(filter_json(sub1))[1:-1] + ", " \
                                     + json.dumps(filter_json(anim_json))[1:] 

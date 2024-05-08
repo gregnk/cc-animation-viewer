@@ -92,6 +92,8 @@ def load_anim_file(anim_file_path):
 
                         # Some jank to merge the SUBs together
                         #print(json.dumps(filter_json(anim_json))[1:])
+
+                        # BUG: The anims low in the list don't render properly, the wrong frames are displayed
                         print("sub3 = " + json.dumps(filter_json(sub3))[:-1])
                         print("sub2 = " + json.dumps(filter_json(sub2))[1:-1])
                         anim_item_json = json.dumps(filter_json(sub3))[:-1] + ", " \

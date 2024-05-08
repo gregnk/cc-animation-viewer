@@ -92,12 +92,10 @@ def load_anim_file(anim_file_path):
 
                         # Some jank to merge the SUBs together
                         #print(json.dumps(filter_json(anim_json))[1:])
-
-                        # BUG: If one the SUBs is empty then it breaks the entire thing
                         print("sub3 = " + json.dumps(filter_json(sub3))[:-1])
                         print("sub2 = " + json.dumps(filter_json(sub2))[1:-1])
                         anim_item_json = json.dumps(filter_json(sub3))[:-1] + ", " \
-                                        + json.dumps(filter_json(sub2))[1:-1] + ", " \
+                                        + (json.dumps(filter_json(sub2))[1:-1] + ", " if (json.dumps(filter_json(sub2))[1:-1]) else "") \
                                         + json.dumps(filter_json(sub1))[1:-1] + ", " \
                                         + json.dumps(filter_json(anim_json))[1:]
 

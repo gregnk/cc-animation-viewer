@@ -131,10 +131,11 @@ def get_display_image(anim_index):
 
     # Crop coords (UNFINISHED)
     # TODO: Add tile offsets
-    left = anim_width * anim_frame
-    top = 0 + (anim_height * PlaybackControl.direction)
-    right = anim_width * (anim_frame + 1)
-    bottom = anim_height + (anim_height * PlaybackControl.direction)
+
+    left = anim_width * anim_frame + current_sheet["offX"]
+    top = 0 + (anim_height * PlaybackControl.direction) + current_sheet["offY"]
+    right = anim_width * (anim_frame + 1) + current_sheet["offX"]
+    bottom = anim_height + (anim_height * PlaybackControl.direction) + current_sheet["offY"]
 
     light_image = Image.open(os.path.join(current_anim_sheet_path)) \
         .crop([left, top, right, bottom]) \

@@ -94,8 +94,8 @@ def load_anim_file(anim_file_path):
                         #print(json.dumps(filter_json(anim_json))[1:])
 
                         # BUG: If one the SUBs is empty then it breaks the entire thing
-                        print(json.dumps("sub3 = " + filter_json(sub3))[:-1])
-                        print(json.dumps("sub2 = " + filter_json(sub2))[1:-1])
+                        print("sub3 = " + json.dumps(filter_json(sub3))[:-1])
+                        print("sub2 = " + json.dumps(filter_json(sub2))[1:-1])
                         anim_item_json = json.dumps(filter_json(sub3))[:-1] + ", " \
                                         + json.dumps(filter_json(sub2))[1:-1] + ", " \
                                         + json.dumps(filter_json(sub1))[1:-1] + ", " \

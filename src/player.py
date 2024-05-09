@@ -180,7 +180,7 @@ def update_anim():
     display_frame.configure(image=display_image)
 
 # Timer
-window.after(100, anim_tick)
+window.after(800, anim_tick)
 
 # Toolbar buttons
 TOOLBAR_BTN_WIDTH = 100

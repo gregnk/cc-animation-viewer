@@ -108,8 +108,8 @@ def load_anim_file(anim_file_path):
                         print()
 
                 else:
-                    anim_item_json = filter_empty_anim_sub_json(json.dumps(sub2)[:-1]) + ", " \
-                                    + filter_empty_anim_sub_json(json.dumps(filter_json(sub1))[1:-1]) + ", " \
+                    anim_item_json = filter_empty_anim_sub_json(json.dumps(sub2)[:-1]) \
+                                    + filter_empty_anim_sub_json(json.dumps(filter_json(sub1))[1:-1]) \
                                     + json.dumps(filter_json(anim_json))[1:] 
                     print("SUB 2 anim_item_json = " + anim_item_json)
 

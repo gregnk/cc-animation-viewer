@@ -93,6 +93,7 @@ def load_anim_file(anim_file_path):
 
                         # Some jank to merge the SUBs together
                         # Run all but the last function through a fliter in case they are empty
+                        # The slices are to fliter out the stringy bits at the beginning and end
                         print("sub3 = " + json.dumps(filter_json(sub3))[:-1])
                         print("sub2 = " + json.dumps(filter_json(sub2))[1:-1])
                         anim_item_json = filter_empty_anim_sub_json(json.dumps(filter_json(sub3))[:-1])  \

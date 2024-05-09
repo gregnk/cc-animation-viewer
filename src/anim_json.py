@@ -20,9 +20,6 @@ import json
 import settings
 import copy
 
-def remove_stray_commas(input_str):
-    return input_str
-
 def load_anim_file(anim_file_path):
     print(escape_backslashes(f"{settings.CC_DIR = }"))
     print(escape_backslashes(f"{anim_file_path = }"))

@@ -20,6 +20,10 @@ import json
 import settings
 import copy
 
+# Find a better name for this function
+def filter_empty_anim_sub_json(input_var):
+    return (input_var + ", " if (input_var) else "")
+
 def load_anim_file(anim_file_path):
     print(escape_backslashes(f"{settings.CC_DIR = }"))
     print(escape_backslashes(f"{anim_file_path = }"))
@@ -88,14 +92,12 @@ def load_anim_file(anim_file_path):
                             return return_json
 
                         # Some jank to merge the SUBs together
-                        #print(json.dumps(filter_json(anim_json))[1:])
-
-                        # BUG: The anims low in the list don't render properly, the wrong frames are displayed
+                        # Run all but the last function through a fliter in case they are empty
                         print("sub3 = " + json.dumps(filter_json(sub3))[:-1])
                         print("sub2 = " + json.dumps(filter_json(sub2))[1:-1])
-                        anim_item_json = json.dumps(filter_json(sub3))[:-1] + ", " \
-                                        + (json.dumps(filter_json(sub2))[1:-1] + ", " if (json.dumps(filter_json(sub2))[1:-1]) else "") \
-                                        + json.dumps(filter_json(sub1))[1:-1] + ", " \
+                        anim_item_json = filter_empty_anim_sub_json(json.dumps(filter_json(sub3))[:-1])  \
+                                        + filter_empty_anim_sub_json(json.dumps(filter_json(sub2))[1:-1])  \
+                                        + filter_empty_anim_sub_json(json.dumps(filter_json(sub1))[1:-1]) \
                                         + json.dumps(filter_json(anim_json))[1:]
 
                         print("SUB 3 anim_item_json = " + anim_item_json)
@@ -105,8 +107,8 @@ def load_anim_file(anim_file_path):
                         print()
 
                 else:
-                    anim_item_json = json.dumps(sub2)[:-1] + ", " \
-                                    + json.dumps(filter_json(sub1))[1:-1] + ", " \
+                    anim_item_json = filter_empty_anim_sub_json(json.dumps(sub2)[:-1]) + ", " \
+                                    + filter_empty_anim_sub_json(json.dumps(filter_json(sub1))[1:-1]) + ", " \
                                     + json.dumps(filter_json(anim_json))[1:] 
                     print("SUB 2 anim_item_json = " + anim_item_json)
 

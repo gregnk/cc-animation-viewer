@@ -196,7 +196,7 @@ window.after(800, anim_tick)
 TOOLBAR_BTN_WIDTH = 100
 TOOLBAR_BTN_HEIGHT = 100
 load_btn = ctk.CTkButton(window, text="Load", command=load_file_dlg)
-refresh_btn = ctk.CTkButton(window, text="Refresh")
+refresh_btn = ctk.CTkButton(window, text="Refresh", command=load_anim_json)
 anim_cmb = ctk.CTkComboBox(window, values="", state="readonly", command=anim_cmb_handle)
 
 # Control buttons

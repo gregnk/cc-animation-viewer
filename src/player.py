@@ -57,6 +57,16 @@ def load_anim_json():
     print(anim_name_list)
     anim_cmb.configure(values=anim_name_list)
 
+def load_file_dlg():
+    load_file_path = ctk.filedialog.askopenfilename(
+        title = "Select JSON file", 
+        initialdir = settings.CC_DIR + "/assets/data/animations",
+        filetypes = [("JSON File", "*.json"), ("All files", "*.*")])
+    CurrentAnimFile.file_path = load_file_path
+    
+    load_anim_json()
+    update_anim()
+
 def anim_tick():
     if (PlaybackControl.playing == True):
         if (PlaybackControl.frame < len(CurrentAnimFile.animations[CurrentAnim.index]["frames"]) - 1):
@@ -185,7 +195,7 @@ window.after(800, anim_tick)
 # Toolbar buttons
 TOOLBAR_BTN_WIDTH = 100
 TOOLBAR_BTN_HEIGHT = 100
-load_btn = ctk.CTkButton(window, text="Load")
+load_btn = ctk.CTkButton(window, text="Load", command=load_file_dlg)
 refresh_btn = ctk.CTkButton(window, text="Refresh")
 anim_cmb = ctk.CTkComboBox(window, values="", state="readonly", command=anim_cmb_handle)
 

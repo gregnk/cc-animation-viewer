@@ -184,6 +184,14 @@ def direction_input_handle(input):
         PlaybackControl.direction = dir_input_int
         update_anim()
 
+def frame_input_handle(input):
+    framenbr_input_int = int(framenbr_input.get())
+    if (PlaybackControl.playing == False):
+        if (framenbr_input_int >= 0 and framenbr_input_int < len(CurrentAnimFile.animations[CurrentAnim.index]["frames"])):
+            PlaybackControl.frame = framenbr_input_int
+            update_anim()
+
+
 def update_anim():
     # Update the display image
     display_image = get_display_image(CurrentAnim.index)
@@ -214,6 +222,9 @@ FRAMECTRL_FIELD_WIDTH = 35
 direction_lbl = ctk.CTkLabel(window, text="Direction", width=FRAMECTRL_BTN_WIDTH)
 direction_input = ctk.CTkEntry(window, width=FRAMECTRL_BTN_WIDTH)
 
+framenbr_lbl = ctk.CTkLabel(window, text="Frame #", width=FRAMECTRL_BTN_WIDTH)
+framenbr_input = ctk.CTkEntry(window, width=FRAMECTRL_BTN_WIDTH)
+
 # Display frame
 load_anim_json()
 display_image = get_display_image(0)
@@ -232,6 +243,11 @@ def load_ui():
     direction_input.insert(0, "0")
     direction_input.bind("<Return>", direction_input_handle) # TODO: Have this update on input as opposed to requiring enter
     direction_input.place(relx=PLAYPAUSE_BTN_RELX - 0.3, rely=PLAYPAUSE_BTN_RELY, anchor=ctk.S)
+
+    framenbr_lbl.place(relx=PLAYPAUSE_BTN_RELX - 0.35, rely=PLAYPAUSE_BTN_RELY + 0.06, anchor=ctk.S)
+    framenbr_input.insert(0, "0")
+    framenbr_input.bind("<Return>", frame_input_handle) # TODO: Have this update on input as opposed to requiring enter
+    framenbr_input.place(relx=PLAYPAUSE_BTN_RELX - 0.3, rely=PLAYPAUSE_BTN_RELY + 0.06, anchor=ctk.S)
 
     load_btn.place(relx=0.1, rely=0.05, anchor=ctk.N)
     refresh_btn.place(relx=0.25, rely=0.05, anchor=ctk.N)

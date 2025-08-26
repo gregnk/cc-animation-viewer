@@ -198,6 +198,7 @@ TOOLBAR_BTN_HEIGHT = 100
 load_btn = ctk.CTkButton(window, text="Load", command=load_file_dlg)
 refresh_btn = ctk.CTkButton(window, text="Refresh", command=load_anim_json)
 anim_cmb = ctk.CTkComboBox(window, values="", state="readonly", command=anim_cmb_handle)
+settings_btn = ctk.CTkButton(window, text="Settings", command=load_anim_json)
 
 # Control buttons
 PLAYPAUSE_BTN_RELX = 0.5
@@ -235,6 +236,7 @@ def load_ui():
     load_btn.place(relx=0.1, rely=0.05, anchor=ctk.N)
     refresh_btn.place(relx=0.25, rely=0.05, anchor=ctk.N)
     anim_cmb.place(relx=0.40, rely=0.05, anchor=ctk.N)
+    settings_btn.place(relx=0.90, rely=0.05, anchor=ctk.N)
 
     display_frame.place(relx=0.5, rely=0.5, anchor=ctk.CENTER)
 

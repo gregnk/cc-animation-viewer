@@ -197,6 +197,9 @@ def update_anim():
     display_image = get_display_image(CurrentAnim.index)
     display_frame.configure(image=display_image)
 
+def open_settings_dlg():
+    dummy = 0
+
 # Timer
 window.after(800, anim_tick)
 
@@ -206,7 +209,7 @@ TOOLBAR_BTN_HEIGHT = 100
 load_btn = ctk.CTkButton(window, text="Load", command=load_file_dlg)
 refresh_btn = ctk.CTkButton(window, text="Refresh", command=load_anim_json)
 anim_cmb = ctk.CTkComboBox(window, values="", state="readonly", command=anim_cmb_handle)
-settings_btn = ctk.CTkButton(window, text="Settings", command=load_anim_json)
+settings_btn = ctk.CTkButton(window, text="Settings", command=open_settings_dlg)
 
 # Control buttons
 PLAYPAUSE_BTN_RELX = 0.5

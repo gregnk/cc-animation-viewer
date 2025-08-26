@@ -43,7 +43,9 @@ def load_anim_file(anim_file_path):
 
     else:
 
-        print(f"dirs = {str(anim_json['dirs'])}")
+
+        if ("dirs" in anim_json):
+            print(f"dirs = {str(anim_json['dirs'])}")
 
         # Load the sheets
         print("Sheets")

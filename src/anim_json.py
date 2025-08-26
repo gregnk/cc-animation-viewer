@@ -91,7 +91,7 @@ def load_anim_file(anim_file_path):
                 # TODO: Some anims are not loaded in properly
                 if ("SUB" in sub2):
                     for sub3 in sub2["SUB"]:
-                        
+
                         # Some jank to merge the SUBs together
                         # Run all but the last function through a fliter in case they are empty
                         # The slices are to fliter out the stringy bits at the beginning and end

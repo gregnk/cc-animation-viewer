@@ -65,7 +65,26 @@ def load_anim_file(anim_file_path):
         print("Animations")
         print("=" * 50)
 
+        # JSON cleaning functions
+        def filter_json(json):
+            return_json = copy.deepcopy(json)
+            return_json = remove_key("DOCTYPE", return_json)
+            return_json = remove_key("SUB", return_json)
+            return_json = remove_key("namedSheets", return_json)
 
+            return return_json
+
+        def remove_key(name, json):
+            return_json = copy.deepcopy(json)
+            for i in return_json:
+                #print(i)
+                if (i == name):
+                    return_json.pop(i)
+                    break
+
+            return return_json
+
+        # Remove the SUB object from the higher orders once separated
         for sub1 in anim_json["SUB"]:
             for sub2 in sub1["SUB"]:
 
@@ -73,26 +92,7 @@ def load_anim_file(anim_file_path):
                 # TODO: Some anims are not loaded in properly
                 if ("SUB" in sub2):
                     for sub3 in sub2["SUB"]:
-
-                        # Remove the SUB object from the higher orders once separated
-                        def filter_json(json):
-                            return_json = copy.deepcopy(json)
-                            return_json = remove_key("DOCTYPE", return_json)
-                            return_json = remove_key("SUB", return_json)
-                            return_json = remove_key("namedSheets", return_json)
-
-                            return return_json
-
-                        def remove_key(name, json):
-                            return_json = copy.deepcopy(json)
-                            for i in return_json:
-                                #print(i)
-                                if (i == name):
-                                    return_json.pop(i)
-                                    break
-
-                            return return_json
-
+                        
                         # Some jank to merge the SUBs together
                         # Run all but the last function through a fliter in case they are empty
                         # The slices are to fliter out the stringy bits at the beginning and end

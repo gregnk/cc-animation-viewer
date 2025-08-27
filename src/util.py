@@ -13,6 +13,26 @@ WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
 ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 '''
+import os
 
 def escape_backslashes(input):
     return input.replace("\\\\", "\\")
+
+def get_os_dir_slash():
+    if os.name == 'nt':
+        return "\\"
+        
+    elif os.name == 'posix':
+        return "/"
+        
+    elif os.name == 'java':
+        return "/"
+        
+    else:
+        raise Exception("Unsupported OS")
+    
+def uniform_dir_slashes(dir_path):
+    return_str_0 = dir_path.replace("/", get_os_dir_slash())
+    return_str = return_str_0.replace("\\", get_os_dir_slash())
+    print(return_str)
+    return return_str

@@ -20,6 +20,7 @@ import os
 import settings
 
 from anim_json import load_anim_file, settings
+import util
 
 window = ctk.CTk()
 
@@ -60,7 +61,7 @@ def load_anim_json():
 def load_file_dlg():
     load_file_path = ctk.filedialog.askopenfilename(
         title = "Select JSON file", 
-        initialdir = settings.CC_DIR + "/assets/data/animations",
+        initialdir = settings.CC_DIR + util.uniform_dir_slashes("/assets/data/animations"),
         filetypes = [("JSON File", "*.json"), ("All files", "*.*")])
     CurrentAnimFile.file_path = load_file_path
     
@@ -123,7 +124,7 @@ def get_display_image(anim_index):
     current_anim_sheet_path = settings.CC_DIR + "/assets/" + current_anim_sheet_src
 
     print(list(CurrentAnimFile.sheets.keys())[current_sheet_index])
-    print(current_anim_sheet_path)
+    print(util.uniform_dir_slashes(current_anim_sheet_path))
     print(f"current_sheet[\"offX\"] = {str(current_sheet["offX"])}")
     print(f"current_sheet[\"offY\"] = {str(current_sheet["offY"])}")
 

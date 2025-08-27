@@ -238,25 +238,30 @@ def load_ui():
     window.geometry('1000x700')
     window.title("cc-animation-viewer")
 
+    # Playback controls
     playpause_btn.place(relx=PLAYPAUSE_BTN_RELX, rely=PLAYPAUSE_BTN_RELY, anchor=ctk.S)
     backframe_btn.place(relx=PLAYPAUSE_BTN_RELX - 0.1, rely=PLAYPAUSE_BTN_RELY, anchor=ctk.S)
     forwardframe_btn.place(relx=PLAYPAUSE_BTN_RELX + 0.1, rely=PLAYPAUSE_BTN_RELY, anchor=ctk.S)
 
+    # Direction
     direction_lbl.place(relx=PLAYPAUSE_BTN_RELX - 0.35, rely=PLAYPAUSE_BTN_RELY, anchor=ctk.S)
     direction_input.insert(0, "0")
     direction_input.bind("<Return>", direction_input_handle) # TODO: Have this update on input as opposed to requiring enter
     direction_input.place(relx=PLAYPAUSE_BTN_RELX - 0.3, rely=PLAYPAUSE_BTN_RELY, anchor=ctk.S)
 
+    # Frame #
     framenbr_lbl.place(relx=PLAYPAUSE_BTN_RELX - 0.35, rely=PLAYPAUSE_BTN_RELY + 0.06, anchor=ctk.S)
     framenbr_input.insert(0, "0")
     framenbr_input.bind("<Return>", frame_input_handle) # TODO: Have this update on input as opposed to requiring enter
     framenbr_input.place(relx=PLAYPAUSE_BTN_RELX - 0.3, rely=PLAYPAUSE_BTN_RELY + 0.06, anchor=ctk.S)
 
+    # Top bar
     load_btn.place(relx=0.1, rely=0.05, anchor=ctk.N)
     refresh_btn.place(relx=0.25, rely=0.05, anchor=ctk.N)
     anim_cmb.place(relx=0.40, rely=0.05, anchor=ctk.N)
     settings_btn.place(relx=0.90, rely=0.05, anchor=ctk.N)
 
+    # Animation display frame
     display_frame.place(relx=0.5, rely=0.5, anchor=ctk.CENTER)
 
     anim_cmb.set(CurrentAnimFile.animations[CurrentAnim.index]["name"])

@@ -16,7 +16,7 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 VERSION = "v0.1.0"
 
-import player
+import src.player as player
 
 def main():
     player.load_ui()

@@ -168,11 +168,18 @@ def get_anim_index_by_name(name):
 def anim_cmb_handle(choice):
     pause()
     print(choice)
+
+    anim_index_old = CurrentAnim.index
     CurrentAnim.index = get_anim_index_by_name(choice) # Find a better way of doing this
     CurrentAnim.data = CurrentAnimFile.animations[CurrentAnim.index]
     
+    # Reset frame
     PlaybackControl.frame = 0
-    PlaybackControl.direction = 0
+    
+    # Reset current direction index if the new anim a different same amount
+    if (CurrentAnimFile.animations[CurrentAnim.index]["dirs"] != CurrentAnimFile.animations[anim_index_old]["dirs"]):
+        PlaybackControl.direction = 0
+    
 
     direction_input.delete(0, 100)
     direction_input.insert(0, "0")

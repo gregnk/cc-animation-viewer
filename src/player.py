@@ -229,7 +229,7 @@ forwardframe_btn = ctk.CTkButton(window, text=">", width=FRAMECTRL_BTN_WIDTH, co
 FRAMECTRL_FIELD_WIDTH = 35
 direction_lbl = ctk.CTkLabel(window, text="Direction", width=FRAMECTRL_BTN_WIDTH)
 direction_input = ctk.CTkEntry(window, width=FRAMECTRL_BTN_WIDTH)
-direction_len_lbl = ctk.CTkLabel(window, text="/", width=FRAMECTRL_BTN_WIDTH) # CurrentAnimFile.animations[CurrentAnim.index]["dirs"]
+direction_len_lbl = ctk.CTkLabel(window, text="/", width=FRAMECTRL_BTN_WIDTH)
 
 framenbr_lbl = ctk.CTkLabel(window, text="Frame", width=FRAMECTRL_BTN_WIDTH)
 framenbr_input = ctk.CTkEntry(window, width=FRAMECTRL_BTN_WIDTH)

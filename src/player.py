@@ -228,7 +228,7 @@ FRAMECTRL_FIELD_WIDTH = 35
 direction_lbl = ctk.CTkLabel(window, text="Direction", width=FRAMECTRL_BTN_WIDTH)
 direction_input = ctk.CTkEntry(window, width=FRAMECTRL_BTN_WIDTH)
 
-framenbr_lbl = ctk.CTkLabel(window, text="Frame #", width=FRAMECTRL_BTN_WIDTH)
+framenbr_lbl = ctk.CTkLabel(window, text="Frame", width=FRAMECTRL_BTN_WIDTH)
 framenbr_input = ctk.CTkEntry(window, width=FRAMECTRL_BTN_WIDTH)
 
 # Display frame
@@ -252,7 +252,7 @@ def load_ui():
     direction_input.bind("<Return>", direction_input_handle) # TODO: Have this update on input as opposed to requiring enter
     direction_input.place(relx=PLAYPAUSE_BTN_RELX - 0.3, rely=PLAYPAUSE_BTN_RELY, anchor=ctk.S)
 
-    # Frame #
+    # Frame
     framenbr_lbl.place(relx=PLAYPAUSE_BTN_RELX - 0.35, rely=PLAYPAUSE_BTN_RELY + 0.06, anchor=ctk.S)
     framenbr_input.insert(0, "0")
     framenbr_input.bind("<Return>", frame_input_handle) # TODO: Have this update on input as opposed to requiring enter

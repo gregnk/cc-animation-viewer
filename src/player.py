@@ -197,6 +197,9 @@ def update_anim():
     display_image = get_display_image(CurrentAnim.index)
     display_frame.configure(image=display_image)
 
+    framenbr_input.delete(0, ctk.END)
+    framenbr_input.insert(0, PlaybackControl.frame)
+
 def open_settings_dlg():
     dummy = 0
 

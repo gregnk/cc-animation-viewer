@@ -62,7 +62,7 @@ def load_anim_json():
 def load_file_dlg():
     load_file_path = ctk.filedialog.askopenfilename(
         title = "Select JSON file", 
-        initialdir = settings.CC_DIR + util.uniform_dir_slashes("/assets/data/animations"),
+        initial_dir = settings.CC_DIR + util.uniform_dir_slashes("/assets/data/animations"),
         filetypes = [("JSON File", "*.json"), ("All files", "*.*")])
     
     if (load_file_path != ""):

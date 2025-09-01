@@ -77,7 +77,13 @@ def anim_tick():
             PlaybackControl.frame += 1
 
         else:
-            PlaybackControl.frame = 0
+
+            if (PlaybackControl.loop):
+                PlaybackControl.frame = 0
+
+            else:
+                pause()
+
         
         update_anim()
 
@@ -89,7 +95,14 @@ def play_pause():
         pause()
 
     else:
+
+        # Restart if at the end of the anim and looping is off
+        if (PlaybackControl.loop == False and PlaybackControl.frame == len(CurrentAnimFile.animations[CurrentAnim.index]["frames"]) - 1):
+            PlaybackControl.frame = 0
+
         play()
+
+    
 
 def play():
     playpause_btn.configure(text="Pause")
@@ -110,6 +123,17 @@ def forward_frame():
         if (PlaybackControl.frame < len(CurrentAnimFile.animations[CurrentAnim.index]["frames"]) - 1):
             PlaybackControl.frame += 1
             update_anim()
+
+def toggle_loop():
+    if (PlaybackControl.loop == True):
+        PlaybackControl.loop = False
+    
+    elif (PlaybackControl.loop == False):
+        PlaybackControl.loop = True
+
+    else:
+        print("toggle_loop() error: Not bool")
+
 
 DISPLAY_FRAME_SIZE = 400
 
@@ -237,6 +261,9 @@ FRAMECTRL_BTN_WIDTH = 30
 backframe_btn = ctk.CTkButton(window, text="<", width=FRAMECTRL_BTN_WIDTH, command=back_frame)
 forwardframe_btn = ctk.CTkButton(window, text=">", width=FRAMECTRL_BTN_WIDTH, command=forward_frame)
 
+loop_chk = ctk.CTkCheckBox(window, text="Loop", command=toggle_loop)
+loop_chk.select()
+
 FRAMECTRL_FIELD_WIDTH = 30
 direction_lbl = ctk.CTkLabel(window, text="Direction", width=FRAMECTRL_FIELD_WIDTH)
 direction_input = ctk.CTkEntry(window, width=FRAMECTRL_FIELD_WIDTH)
@@ -266,6 +293,7 @@ def load_ui():
     playpause_btn.place(relx=PLAYPAUSE_BTN_RELX, rely=PLAYPAUSE_BTN_RELY, anchor=ctk.S)
     backframe_btn.place(relx=PLAYPAUSE_BTN_RELX - 0.1, rely=PLAYPAUSE_BTN_RELY, anchor=ctk.S)
     forwardframe_btn.place(relx=PLAYPAUSE_BTN_RELX + 0.1, rely=PLAYPAUSE_BTN_RELY, anchor=ctk.S)
+    loop_chk.place(relx=PLAYPAUSE_BTN_RELX - 0.065, rely=PLAYPAUSE_BTN_RELY + 0.0559, anchor=ctk.S)
 
     # Direction
     direction_lbl.place(relx=PLAYPAUSE_BTN_RELX - 0.35, rely=PLAYPAUSE_BTN_RELY, anchor=ctk.S)

@@ -64,10 +64,12 @@ def load_file_dlg():
         title = "Select JSON file", 
         initialdir = settings.CC_DIR + util.uniform_dir_slashes("/assets/data/animations"),
         filetypes = [("JSON File", "*.json"), ("All files", "*.*")])
-    CurrentAnimFile.file_path = load_file_path
     
-    load_anim_json()
-    update_anim()
+    if (load_file_path != ""):
+        CurrentAnimFile.file_path = load_file_path
+    
+        load_anim_json()
+        update_anim()
 
 def anim_tick():
     if (PlaybackControl.playing == True):

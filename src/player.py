@@ -245,7 +245,8 @@ framenbr_input = ctk.CTkEntry(window, width=FRAMECTRL_BTN_WIDTH)
 framenbr_len_lbl = ctk.CTkLabel(window, text="/", width=FRAMECTRL_BTN_WIDTH)
 
 def update_ctrl_lbls():
-    direction_len_lbl.configure(text="/ " + str(CurrentAnimFile.animations[CurrentAnim.index]["dirs"] - 1))
+    print(CurrentAnimFile.animations[CurrentAnim.index]["dirs"])
+    direction_len_lbl.configure(text="/ " + str(int(CurrentAnimFile.animations[CurrentAnim.index]["dirs"]) - 1))
     framenbr_len_lbl.configure(text="/ " + str(len(CurrentAnimFile.animations[CurrentAnim.index]["frames"]) - 1))
 
 

@@ -72,7 +72,7 @@ def load_file_dlg():
         update_anim()
 
 def anim_tick():
-    if (PlaybackControl.playing == True):
+    if (PlaybackControl.playing):
         if (PlaybackControl.frame < len(CurrentAnimFile.animations[CurrentAnim.index]["frames"]) - 1):
             PlaybackControl.frame += 1
 

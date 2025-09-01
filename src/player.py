@@ -57,6 +57,7 @@ def load_anim_json():
 
     print(anim_name_list)
     anim_cmb.configure(values=anim_name_list)
+    anim_cmb.set(CurrentAnimFile.animations[CurrentAnim.index]["name"])
 
 def load_file_dlg():
     load_file_path = ctk.filedialog.askopenfilename(
@@ -287,7 +288,5 @@ def load_ui():
 
     # Animation display frame
     display_frame.place(relx=0.5, rely=0.5, anchor=ctk.CENTER)
-
-    anim_cmb.set(CurrentAnimFile.animations[CurrentAnim.index]["name"])
 
     window.mainloop()

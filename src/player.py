@@ -58,6 +58,7 @@ def load_anim_json():
     print(anim_name_list)
     anim_cmb.configure(values=anim_name_list)
     anim_cmb.set(CurrentAnimFile.animations[CurrentAnim.index]["name"])
+    PlaybackControl.frame = 0
 
 def load_file_dlg():
     load_file_path = ctk.filedialog.askopenfilename(

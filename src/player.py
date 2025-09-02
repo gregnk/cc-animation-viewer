@@ -63,7 +63,7 @@ def load_anim_json():
 def load_file_dlg():
     load_file_path = ctk.filedialog.askopenfilename(
         title = "Select JSON file", 
-        initialdir = settings.CC_DIR + util.uniform_dir_slashes("/assets/data/animations"),
+        initialdir = settings.cc_dir + util.uniform_dir_slashes("/assets/data/animations"),
         filetypes = [("JSON File", "*.json"), ("All files", "*.*")])
     
     if (load_file_path != ""):
@@ -149,7 +149,7 @@ def get_display_image(anim_index):
     current_sheet = CurrentAnimFile.sheets[CurrentAnimFile.animations[anim_index]["sheet"]]
     current_sheet_index = list(CurrentAnimFile.sheets.keys()).index(CurrentAnimFile.animations[anim_index]["sheet"])
     current_anim_sheet_src = current_sheet["src"] # The relative path in the JSON
-    current_anim_sheet_path = settings.CC_DIR + "/assets/" + current_anim_sheet_src
+    current_anim_sheet_path = settings.cc_dir + "/assets/" + current_anim_sheet_src
 
     print(list(CurrentAnimFile.sheets.keys())[current_sheet_index])
     print(util.uniform_dir_slashes(current_anim_sheet_path))
@@ -286,7 +286,7 @@ display_image = get_display_image(0)
 display_frame = ctk.CTkLabel(window, text='', width=DISPLAY_FRAME_SIZE, height=DISPLAY_FRAME_SIZE, image=display_image)
 
 def load_ui():
-    
+
     window.geometry('1000x700')
     window.title("cc-animation-viewer")
 

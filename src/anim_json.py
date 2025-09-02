@@ -25,7 +25,9 @@ def filter_empty_anim_sub_json(input_var):
     return (input_var + ", " if (input_var) else "")
 
 def load_anim_file(anim_file_path):
-    print(escape_backslashes(f"{settings.CC_DIR = }"))
+
+    settings.load_settings_json()
+    print(escape_backslashes(f"{settings.cc_dir = }"))
     print(escape_backslashes(f"{anim_file_path = }"))
 
     print()

@@ -14,4 +14,21 @@ ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 '''
 
-CC_DIR = r"C:\Program Files (x86)\Steam\steamapps\common\CrossCode"
+import json
+
+cc_dir = ""
+settings_json = ""
+
+def load_settings_json():
+    global cc_dir
+    global settings_json
+
+    settings_json = json.load(open("settings.json"))
+    cc_dir = settings_json["cc_dir"]
+
+def save_settings_json():
+    global settings_json
+
+    settings_json["cc_dir"] = cc_dir
+    with open("settings.json", "w") as f:
+        json.dump(settings_json, f)

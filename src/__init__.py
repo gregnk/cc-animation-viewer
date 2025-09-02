@@ -17,10 +17,9 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 VERSION = "v0.1.0"
 
 import src.player as player
-import settings
 
 def main():
-    settings.load_settings_json()
     player.load_ui()
+
 
 main()

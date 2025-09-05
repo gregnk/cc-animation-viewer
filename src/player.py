@@ -33,7 +33,7 @@ class PlaybackControl:
 
 # The currently loaded anim file
 class CurrentAnimFile:
-    file_path = r"C:\Program Files (x86)\Steam\steamapps\common\CrossCode\assets\data\animations\player.json" # Temporary code
+    file_path = settings.cc_dir + util.uniform_dir_slashes("/assets/data/animations/player.json")
     sheets = ""
     animations = ""
 

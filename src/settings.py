@@ -15,6 +15,9 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 '''
 
 import json
+from tkinter import filedialog
+
+import util
 
 cc_dir = ""
 settings_json = ""
@@ -32,3 +35,15 @@ def save_settings_json():
     settings_json["cc_dir"] = cc_dir
     with open("settings.json", "w") as f:
         json.dump(settings_json, f)
+
+def open_settings_dlg():
+    # Currently taskes the place of the settings stuff
+    # Internal var names will remain as-is
+    global cc_dir
+    directory_path = filedialog.askdirectory()
+
+    if directory_path: 
+        cc_dir = util.uniform_dir_slashes(util.escape_backslashes(directory_path))
+        save_settings_json()
+    else:
+        print("Directory selection canceled.")

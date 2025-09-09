@@ -37,7 +37,7 @@ def save_settings_json():
         json.dump(settings_json, f)
 
 def open_settings_dlg():
-    # Currently taskes the place of the settings stuff
+    # Dir selection currently taskes the place of the settings stuff
     # Internal var names will remain as-is
     global cc_dir
     directory_path = filedialog.askdirectory()

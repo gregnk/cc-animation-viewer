@@ -36,7 +36,7 @@ def load_anim_file(anim_file_path):
     ##################################################
 
     # Load the Json
-    anim_json = json.load(open(anim_file_path))
+    anim_json = json.load(open(settings.cc_dir + anim_file_path))
     #print(anim_json_file)
 
     # Check the DOCTYPE

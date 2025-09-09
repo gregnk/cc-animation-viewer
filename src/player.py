@@ -15,6 +15,7 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 '''
 
 import customtkinter as ctk
+from tkinter import filedialog
 from PIL import Image
 import os
 import settings
@@ -239,7 +240,16 @@ def update_anim():
     update_ctrl_lbls()
 
 def open_settings_dlg():
-    dummy = 0
+    # Currently taskes the place of the settings stuff
+    # Internal var names will remain as-is
+    directory_path = filedialog.askdirectory()
+
+    if directory_path: 
+        settings.cc_dir = util.uniform_dir_slashes(util.escape_backslashes(directory_path))
+        settings.save_settings_json()
+    else:
+        print("Directory selection canceled.")
+
 
 # Timer
 window.after(800, anim_tick)
@@ -250,7 +260,8 @@ TOOLBAR_BTN_HEIGHT = 100
 load_btn = ctk.CTkButton(window, text="Load", command=load_file_dlg)
 refresh_btn = ctk.CTkButton(window, text="Refresh", command=load_anim_json)
 anim_cmb = ctk.CTkComboBox(window, values="", state="readonly", command=anim_cmb_handle)
-settings_btn = ctk.CTkButton(window, text="Settings", command=open_settings_dlg)
+#settings_btn = ctk.CTkButton(window, text="Settings", command=open_settings_dlg)
+settings_btn = ctk.CTkButton(window, text="Set CC Directory", command=open_settings_dlg)
 
 # Control buttons
 PLAYPAUSE_BTN_RELX = 0.5

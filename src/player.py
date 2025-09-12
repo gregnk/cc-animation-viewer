@@ -33,7 +33,7 @@ class PlaybackControl:
 
 # The currently loaded anim file
 class CurrentAnimFile:
-    file_path = settings.cc_dir + util.uniform_dir_slashes("/assets/data/animations/player.json")
+    file_path = ""
     sheets = ""
     animations = ""
 
@@ -280,6 +280,10 @@ def update_ctrl_lbls():
     direction_len_lbl.configure(text="/ " + str(int(CurrentAnimFile.animations[CurrentAnim.index]["dirs"]) - 1))
     framenbr_len_lbl.configure(text="/ " + str(len(CurrentAnimFile.animations[CurrentAnim.index]["frames"]) - 1))
 
+
+# Load settings and default anim
+settings.load_settings_json()
+CurrentAnimFile.file_path = settings.cc_dir + util.uniform_dir_slashes("/assets/data/animations/player.json")
 
 # Display frame
 load_anim_json()

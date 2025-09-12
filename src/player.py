@@ -167,18 +167,37 @@ def get_display_image(anim_index):
     print(f"PlaybackControl.frame = {PlaybackControl.frame}")
     print(f"anim_frame = {anim_frame}")
     print(f"CurrentAnim.animations[anim_index][\"frames\"] = {CurrentAnimFile.animations[anim_index]["frames"]}")
+    print(f"CurrentAnim.animations[anim_index][\"flipX\"] = {CurrentAnimFile.animations[anim_index]["flipX"]}")
 
     # Crop coords (UNFINISHED)
     # TODO: Add tile offsets
+
 
     left = anim_width * anim_frame + current_sheet["offX"]
     top = 0 + (anim_height * PlaybackControl.direction) + current_sheet["offY"]
     right = anim_width * (anim_frame + 1) + current_sheet["offX"]
     bottom = anim_height + (anim_height * PlaybackControl.direction) + current_sheet["offY"]
 
+    if (CurrentAnimFile.animations[anim_index]["flipX"][PlaybackControl.direction]):
+        # Invert the dir number along a circle:
+        # 1. Get the decimal of how far the dir is in the index
+        # 2. Multiply that by the number of dirs
+        print("flipped")
+        inverse_dir = round(
+            CurrentAnimFile.animations[anim_index]["dirs"] * (1 - (PlaybackControl.direction / (CurrentAnimFile.animations[anim_index]["dirs"] - 1)))) + 1
+        print("inverse_dir = " + str(inverse_dir))
+
+        # Apply the new coords
+        top = 0 + (anim_height * inverse_dir) + current_sheet["offY"]
+        bottom = anim_height + (anim_height * inverse_dir) + current_sheet["offY"]
+
     light_image = Image.open(os.path.join(current_anim_sheet_path)) \
         .crop([left, top, right, bottom]) \
-        .resize([DISPLAY_FRAME_SIZE, DISPLAY_FRAME_SIZE], Image.Resampling.NEAREST)
+        .resize([DISPLAY_FRAME_SIZE, DISPLAY_FRAME_SIZE], Image.Resampling.NEAREST) \
+    
+    # Flip on the x-axis if flipX is set
+    if (CurrentAnimFile.animations[anim_index]["flipX"][PlaybackControl.direction]):
+        light_image = light_image.transpose(Image.FLIP_LEFT_RIGHT)
 
     return ctk.CTkImage(light_image=light_image, size=(DISPLAY_FRAME_SIZE, DISPLAY_FRAME_SIZE))
 

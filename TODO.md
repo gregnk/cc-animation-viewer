@@ -3,3 +3,4 @@
 * Toggle background colour (and eventually custom bg colour)
 * Add loop toggle button - DONE
 * Fix some anims being streched
+* Implement flipped anim dirs

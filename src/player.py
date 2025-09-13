@@ -181,7 +181,8 @@ def get_display_image(anim_index):
     if (CurrentAnimFile.animations[anim_index]["flipX"][PlaybackControl.direction]):
         # Invert the dir number along a circle:
         # 1. Get the decimal of how far the dir is in the index
-        # 2. Multiply that by the number of dirs
+        # 2. Invert it
+        # 3. Multiply that by the number of dirs
         print("flipped")
         inverse_dir = round(
             CurrentAnimFile.animations[anim_index]["dirs"] * (1 - (PlaybackControl.direction / (CurrentAnimFile.animations[anim_index]["dirs"] - 1)))) + 1

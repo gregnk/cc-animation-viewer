@@ -76,9 +76,16 @@ def check_common_dirs():
     
     return cc_dir_found
 
+# Settings UI Code
+##################################################
+
 def open_settings_dlg():
+    # Temp Code
     # Dir selection currently taskes the place of the settings stuff
     # Internal var names will remain as-is
+    select_cc_dir()
+
+def select_cc_dir():
     global cc_dir
     directory_path = filedialog.askdirectory()
 

@@ -44,7 +44,7 @@ class CurrentAnimFile:
 # The animation which is currently playing
 class CurrentAnim:
     index = 0
-    data = ""
+    data = "" # Is this used?
 
 # Load anim functions
 ##################################################

@@ -24,6 +24,9 @@ import util
 
 window = ctk.CTk()
 
+# Control Vars
+##################################################
+
 # Vars for the player state
 class PlaybackControl:
     playing = False
@@ -42,6 +45,9 @@ class CurrentAnimFile:
 class CurrentAnim:
     index = 0
     data = ""
+
+# Load anim functions
+##################################################
 
 def load_anim_json():
     # Jank Code
@@ -71,6 +77,9 @@ def load_file_dlg():
     
         load_anim_json()
         update_anim()
+
+# Playback Control Functions
+##################################################
 
 def anim_tick():
     if (PlaybackControl.playing):
@@ -135,6 +144,8 @@ def toggle_loop():
     else:
         print("toggle_loop() error: Not bool")
 
+# Rendering Code (Pillow)
+##################################################
 
 DISPLAY_FRAME_SIZE = 400
 
@@ -212,6 +223,9 @@ def get_anim_index_by_name(name):
         index += 1
 
     return -1
+
+# UI Handles
+##################################################
 
 # What happens when the animation is changed
 def anim_cmb_handle(choice):

@@ -328,6 +328,7 @@ def update_ctrl_lbls():
 
 # Load settings and default anim
 settings.load_settings_json()
+settings.check_first_startup()
 CurrentAnimFile.file_path = settings.cc_dir + util.uniform_dir_slashes("/assets/data/animations/player.json")
 
 # Display frame

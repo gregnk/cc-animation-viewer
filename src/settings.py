@@ -15,6 +15,9 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 '''
 
 import json
+import os
+import string
+
 from tkinter import filedialog
 
 import util
@@ -35,6 +38,43 @@ def save_settings_json():
     settings_json["cc_dir"] = cc_dir
     with open("settings.json", "w") as f:
         json.dump(settings_json, f)
+
+# First Startup Code
+##################################################
+
+def check_first_startup():
+    global settings_json
+
+    print("settings_json[\"ran_first_startup\"] = " + str(settings_json["ran_first_startup"]))
+    if (settings_json["ran_first_startup"] == False):
+        check_common_dirs()
+        settings_json["ran_first_startup"] = True
+        save_settings_json()
+
+def check_common_dirs():
+    global cc_dir
+
+    cc_dir_found = False
+
+    if os.name == 'nt':
+        for drive_letter in string.ascii_uppercase:
+            check_path = drive_letter + ":\\Program Files (x86)\\Steam\\steamapps\\common\\CrossCode"
+            print(check_path)
+            if (os.path.isdir(check_path)):
+                print("^^^^")
+                cc_dir = check_path
+                cc_dir_found = True
+                break
+
+    elif os.name == 'posix':
+        if (os.path.isdir("~/.local/share/Steam/SteamApps/common/CrossCode/")):
+            cc_dir = "~/.local/share/Steam/SteamApps/common/CrossCode/"
+            cc_dir_found = True
+    
+    else:
+        raise Exception("Unsupported OS")
+    
+    return cc_dir_found
 
 def open_settings_dlg():
     # Dir selection currently taskes the place of the settings stuff

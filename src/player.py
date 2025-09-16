@@ -63,8 +63,11 @@ def load_anim_json():
 
     print(anim_name_list)
     anim_cmb.configure(values=anim_name_list)
-    anim_cmb.set(CurrentAnimFile.animations[CurrentAnim.index]["name"])
-    PlaybackControl.frame = 0
+    anim_cmb.set(CurrentAnimFile.animations[0]["name"])
+
+    # Reset playback stuff
+    CurrentAnim.index = 0
+    reset_control_inputs()
 
 def load_file_dlg():
     load_file_path = ctk.filedialog.askopenfilename(
@@ -272,7 +275,15 @@ def update_anim():
 
     update_ctrl_lbls()
 
+def reset_control_inputs():
+    PlaybackControl.frame = 0
+    PlaybackControl.direction = 0
 
+    framenbr_input.delete(0, ctk.END)
+    framenbr_input.insert(0, "0")
+
+    direction_input.delete(0, ctk.END)
+    direction_input.insert(0, "0")
 
 
 # Timer

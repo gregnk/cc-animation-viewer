@@ -25,6 +25,9 @@ import util
 cc_dir = ""
 settings_json = ""
 
+APP_VERSION = "0.1.0"
+APP_DATE = "2025-XX-XX"
+
 def load_settings_json():
     global cc_dir
     global settings_json

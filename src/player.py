@@ -15,6 +15,7 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 '''
 
 import customtkinter as ctk
+from CTkMessagebox import CTkMessagebox
 from PIL import Image
 import os
 import settings
@@ -285,6 +286,8 @@ def reset_control_inputs():
     direction_input.delete(0, ctk.END)
     direction_input.insert(0, "0")
 
+def open_about_dlg():
+    CTkMessagebox(title="Information", message=f"cc-animation-viewer v{settings.APP_VERSION} ({settings.APP_DATE}) \n\nCopyright (c) 2025 Gregory Karastergios", width=500, master=window)
 
 # Timer
 window.after(800, anim_tick)
@@ -297,6 +300,7 @@ refresh_btn = ctk.CTkButton(window, text="Refresh", command=load_anim_json)
 anim_cmb = ctk.CTkComboBox(window, values="", state="readonly", command=anim_cmb_handle)
 #settings_btn = ctk.CTkButton(window, text="Settings", command=settings.open_settings_dlg)
 settings_btn = ctk.CTkButton(window, text="Set CC Directory", command=settings.open_settings_dlg)
+about_btn = ctk.CTkButton(window, text="?", width=30, command=open_about_dlg)
 
 # Control buttons
 PLAYPAUSE_BTN_RELX = 0.5
@@ -367,8 +371,9 @@ def load_ui():
     load_btn.place(relx=0.1, rely=0.05, anchor=ctk.N)
     refresh_btn.place(relx=0.25, rely=0.05, anchor=ctk.N)
     anim_cmb.place(relx=0.40, rely=0.05, anchor=ctk.N)
-    settings_btn.place(relx=0.90, rely=0.05, anchor=ctk.N)
-
+    settings_btn.place(relx=0.855, rely=0.05, anchor=ctk.N)
+    about_btn.place(relx=0.95, rely=0.05, anchor=ctk.N)
+    
     # Animation display frame
     display_frame.place(relx=0.5, rely=0.5, anchor=ctk.CENTER)
 

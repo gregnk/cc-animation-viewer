@@ -2,4 +2,5 @@
 ====================================
 
 * CustomTkinter - Copyright (c) 2023 Tom Schimansky. MIT. <https://github.com/TomSchimansky/CustomTkinter/blob/master/LICENSE>
+* CTkMessagebox - https://github.com/Akascape/CTkMessagebox. CC0-1.0. <https://github.com/Akascape/CTkMessagebox/blob/main/LICENSE>
 * Pillow - Copyright (c) 1997-2011 Secret Labs AB, 1995-2011 Fredrik Lundh, 2010 Jeffrey A. Clark (Alex) and contributors. <https://github.com/python-pillow/Pillow/LICENSE>
